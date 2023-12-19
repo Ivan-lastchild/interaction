@@ -22,6 +22,14 @@ sbmtBtn.addEventListener("click", ()=>{
     userBirthdayMonth = +userBirthdayMonthInput.value;
     userBirthdayYear = +userBirthdayYearInput.value;
 
+    while (userBirthdayDay<=0 || userBirthdayDay>31) {
+      userBirthdayDay = +prompt("Enter correct Birth Day");
+    };
+  
+    while (userBirthdayMonth<=0 || userBirthdayMonth>12){
+      userBirthdayMonth = +prompt("Enter correct Birth Month");
+    };
+
     //Перевіряемо на правильність введення данних, щоб не було 
     //порожніх рядків в іменах та прізвищах, та були лише числові дані в даті народження
     //не став робити за допомогою регулярних виразів та не став робити додаткові функції, проте знаю, що
@@ -40,7 +48,7 @@ sbmtBtn.addEventListener("click", ()=>{
         && !isNaN (userBirthdayYear)) {
         document.write(`<p> User Bio: ${userName} ${userSurname}, ${defineAge(userBirthdayYear)} ${getEndWord(defineAge(userBirthdayYear))} ${defineLeapYear(userBirthdayYear)}, ${defineZodiac(userBirthdayDay, userBirthdayMonth)}</p>`)
     } else {
-        alert("write current data")
+        alert("Enter current data")
     }
 });
 
@@ -81,9 +89,9 @@ function defineZodiac(day, month) {
       return 'Capricorn';
     } else if ((month === 1 && day >= 20) || (month === 2 && day <= 18)) {
       return "Aquarius";
-    } else {
+    } else if ((month === 2 && day >= 19) || (month === 3 && day <= 20)){
       return "Pisces";
-    }
+    } 
 }
 
 //Визначаемо вік користувача
